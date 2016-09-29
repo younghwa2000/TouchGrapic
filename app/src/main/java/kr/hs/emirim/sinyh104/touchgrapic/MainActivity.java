@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -13,6 +14,9 @@ public class MainActivity extends AppCompatActivity {
     static final int LINE=1,RECT=2,CIRCLE=3;
     int chooseShape=CIRCLE;
     DrawShape ds;
+    int startX,startY,stopX,stopY;
+    int r;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,17 +56,36 @@ public class MainActivity extends AppCompatActivity {
 
             switch(chooseShape){
                 case LINE:
-                    canvas.drawLine(50,100,650,100,paint);
+                    canvas.drawLine(startX,startY,stopX,stopY,paint);
                     break;
                 case RECT:
                     paint.setColor(Color.YELLOW);
                     paint.setStyle(Paint.Style.FILL);
-                    canvas.drawRect(100,100,140,160,paint);
+                    canvas.drawRect(startX,startY,stopX,stopY,paint);
                     break;
                 case CIRCLE:
-                    canvas.drawCircle(cx,cy,50,paint);
+                    r=(int)Math.sqrt(Math.pow(stopX-startX,2)+Math.pow(stopY-startY,2));
+                    canvas.drawCircle(startX,startY,r,paint);
                     break;
             }
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            switch(event.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    startX=(int)event.getX();
+                    startY=(int)event.getY();
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    break;
+                case MotionEvent.ACTION_UP:
+                    stopX=(int)event.getX();
+                    stopY=(int)event.getY();
+                    break;
+            }
+            invalidate();
+            return true;
         }
     }
 }

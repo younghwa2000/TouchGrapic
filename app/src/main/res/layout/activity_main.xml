@@ -29,14 +29,14 @@
             android:id="@+id/but_rect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/str_butline"
+            android:text="@string/str_butrect"
             android:textAppearance="?android:textAppearanceLarge"
             android:onClick="drawShape"/>
         <Button
             android:id="@+id/but_circle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/str_butline"
+            android:text="@string/str_butcircle"
             android:textAppearance="?android:textAppearanceLarge"
             android:onClick="drawShape"/>
 

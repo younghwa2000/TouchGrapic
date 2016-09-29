@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="@string/str_butline"
             android:textAppearance="?android:textAppearanceLarge"
-            android:onClick="drawShape/>
+            android:onClick="drawShape"/>
 
     </LinearLayout>
     <LinearLayout
